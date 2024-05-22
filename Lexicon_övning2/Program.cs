@@ -17,7 +17,8 @@ namespace Lexicon_övning2
             do
             {
                 Console.WriteLine("Du har kommit till huvudmenyn. Du kan navigera genom att skriva in siffror" +
-                "för att testa olika funktioner.    ");
+                "för att testa olika funktioner. Menyval 0 - Avsluta programmet , Menyval 1 - Ungdom eller pensionär? , " +
+                "Menyval 2 - Sällskap , Menyval 3 - ");
                 input = Console.ReadLine()!;
 
                 switch (input)
@@ -27,16 +28,30 @@ namespace Lexicon_övning2
                         run = false;
                         break;
                     case "1":
-                        Console.WriteLine("");
-                        run = false;
+                        Console.WriteLine("Ungdom eller pensionär? Din ålder: ");
+
+                        
+                        string inputAge = Console.ReadLine()!;
+
+                        if (int.TryParse(inputAge, out int age))
+                        {
+                            Console.WriteLine("Din ålder: " + age);
+
+                            checkAge(age);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ogiltigt nummer.");
+                        }
+
                         break;
                     case "2":
                         Console.WriteLine("");
-                        run = false;
+                       
                         break;
                     case "3":
                         Console.WriteLine("");
-                        run = false;
+                        
                         break;
                     default:
                         Console.WriteLine("Felaktigt input, försök igen.");
@@ -47,6 +62,12 @@ namespace Lexicon_övning2
             } while (run);
 
 
+        }
+
+        private static void checkAge(int age)
+        {
+            if (age < 0)
+            //throw new NotImplementedException();
         }
     }
 }
