@@ -6,6 +6,8 @@ namespace Lexicon_övning2
     internal class Program
     {
         private static bool run = true;
+        private static int totalGroupPrice;
+        private static int price;
 
         static void Main(string[] args)
         {
@@ -45,9 +47,6 @@ namespace Lexicon_övning2
                         }
 
                         
-
-                        
-                        
                         break;
 
 
@@ -69,23 +68,24 @@ namespace Lexicon_övning2
 
                                 isSuccess = tryParse(input, out age);
 
-                                groupAges.Add(age);
-
-                        
+                                if (isSuccess) { groupAges.Add(age); }
+                                
 
                             }
                         }
-                        int ageSum = 0;
+                        //int ageSum = 0;
 
                         foreach(int personAge in groupAges)
                         {
 
-                            ageSum += personAge;
+                            calculateTotalCost(personAge);
                             
                         }
 
-                        Console.WriteLine($"{ageSum}");
-
+                        Console.WriteLine($"Antal personer: {result}.    Totalkostnad för hela sällskapet: {totalGroupPrice} kr.");
+                        totalGroupPrice = 0;
+                        groupAges.Clear(); 
+                       
                         break;
                     case "3":
                         Console.WriteLine("");
@@ -100,6 +100,27 @@ namespace Lexicon_övning2
             } while (run);
 
 
+        }
+
+        private static void calculateTotalCost(int age)
+        {
+            price = 0;
+
+            if (age < 20)
+            {
+                price = 80;
+                totalGroupPrice += price;
+            }
+            else if (age > 64)
+            {
+                price = 90;
+                totalGroupPrice += price;
+            }
+            else
+            {
+                price = 120;
+                totalGroupPrice += price;
+            }
         }
 
         private static bool tryParse(string input, out int result)
@@ -120,19 +141,19 @@ namespace Lexicon_övning2
 
         private static void checkAge(int age)
         {
-            int price;
+            
 
             if (age < 20)
-            {
-                price = 80;
+            {       
+                
                 Console.WriteLine("Ungdomspris: 80 kr");
             }else if (age > 64)
             {
-                price = 90;
+                
                 Console.WriteLine("Pensionärpris: 90 kr");
             }else
             {
-                price = 120;
+                
                 Console.WriteLine("Standardpris: 120 kr");
             }
             
