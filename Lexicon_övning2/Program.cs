@@ -17,12 +17,13 @@ namespace Lexicon_övning2
             int result;
             bool isSuccess;
             List<int> groupAges = new List<int>();
+            string[] words = null;
 
             do
             {
                 Console.WriteLine("Du har kommit till huvudmenyn. Du kan navigera genom att skriva in siffror" +
                 "för att testa olika funktioner. Menyval 0 - Avsluta programmet , Menyval 1 - (Bio) Ungdom eller pensionär? , " +
-                "Menyval 2 - (Bio) Sällskap , Menyval 3 - Upprepa tio gånger, Menyval 4 - ");
+                "Menyval 2 - (Bio) Sällskap , Menyval 3 - Upprepa tio gånger, Menyval 4 - Det tredje ordet.");
 
                 input = Console.ReadLine()!;
 
@@ -37,7 +38,7 @@ namespace Lexicon_övning2
                     case "1":
                         Console.WriteLine("Ungdom eller pensionär? Din ålder: ");
 
-                        
+
                         input = Console.ReadLine()!;
 
                         isSuccess = tryParse(input, out result);
@@ -47,7 +48,7 @@ namespace Lexicon_övning2
                             checkAge(result);
                         }
 
-                        
+
                         break;
 
 
@@ -70,23 +71,23 @@ namespace Lexicon_övning2
                                 isSuccess = tryParse(input, out age);
 
                                 if (isSuccess) { groupAges.Add(age); }
-                                
+
 
                             }
                         }
-                        
 
-                        foreach(int personAge in groupAges)
+
+                        foreach (int personAge in groupAges)
                         {
 
                             calculateTotalCost(personAge);
-                            
+
                         }
 
                         Console.WriteLine($"Antal personer: {result}.    Totalkostnad för hela sällskapet: {totalGroupPrice} kr.");
                         totalGroupPrice = 0;
-                        groupAges.Clear(); 
-                       
+                        groupAges.Clear();
+
                         break;
 
                     case "3":
@@ -98,22 +99,38 @@ namespace Lexicon_övning2
 
                         for (int i = 1; i <= 10; i++)
                         {
-                            textCollection += i+ "." + input+", ";
-                            
+                            textCollection += i + "." + input + ", ";
+
                         }
                         Console.WriteLine(textCollection);
-                        
+
                         break;
                     case "4":
 
+                        Console.WriteLine("Ange en menimg med minst tre ord: ");
+                        input = Console.ReadLine()!;
+
+                        words = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
 
-                        break;
-                    default:
+                        // Check if there are a minimum of three words.
+                        if (words.Length >= 3)
+                        {
+                            Console.WriteLine("Tredje ordet är: " + words[2].ToString());
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ogiltig inmatning, du måste skriva minst 3 ord.");
+                        }
+                
+
+                break;
+                default:
                         Console.WriteLine("Felaktigt input, försök igen.");
-                        
-                        break;
-                }
+
+                break;
+            }
 
             } while (run);
 
