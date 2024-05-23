@@ -21,8 +21,9 @@ namespace Lexicon_övning2
             do
             {
                 Console.WriteLine("Du har kommit till huvudmenyn. Du kan navigera genom att skriva in siffror" +
-                "för att testa olika funktioner. Menyval 0 - Avsluta programmet , Menyval 1 - Ungdom eller pensionär? , " +
-                "Menyval 2 - Sällskap , Menyval 3 - ");
+                "för att testa olika funktioner. Menyval 0 - Avsluta programmet , Menyval 1 - (Bio) Ungdom eller pensionär? , " +
+                "Menyval 2 - (Bio) Sällskap , Menyval 3 - Upprepa tio gånger, Menyval 4 - ");
+
                 input = Console.ReadLine()!;
 
                 switch (input)
@@ -73,7 +74,7 @@ namespace Lexicon_övning2
 
                             }
                         }
-                        //int ageSum = 0;
+                        
 
                         foreach(int personAge in groupAges)
                         {
@@ -87,9 +88,26 @@ namespace Lexicon_övning2
                         groupAges.Clear(); 
                        
                         break;
+
                     case "3":
-                        Console.WriteLine("");
+
+                        Console.WriteLine("Ange din text:  ");
+                        input = Console.ReadLine()!;
+
+                        string textCollection = null;
+
+                        for (int i = 1; i <= 10; i++)
+                        {
+                            textCollection += i+ "." + input+", ";
+                            
+                        }
+                        Console.WriteLine(textCollection);
                         
+                        break;
+                    case "4":
+
+
+
                         break;
                     default:
                         Console.WriteLine("Felaktigt input, försök igen.");
