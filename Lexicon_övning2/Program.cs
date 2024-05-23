@@ -5,13 +5,17 @@ namespace Lexicon_övning2
 {
     internal class Program
     {
+        // Fält som styr programmets körning
         private static bool run = true;
+
+
         private static int totalGroupPrice;
         private static int price;
 
+        // Huvudmetoden där programmet startar
         static void Main(string[] args)
         {
-            //Console.WriteLine("Hello, World!");
+            
 
             string input;
             int result;
@@ -21,21 +25,29 @@ namespace Lexicon_övning2
 
             do
             {
+                // Huvudmenyn som presenterar olika alternativ
                 Console.WriteLine("Du har kommit till huvudmenyn. Du kan navigera genom att skriva in siffror" +
                 "för att testa olika funktioner. Menyval 0 - Avsluta programmet , Menyval 1 - (Bio) Ungdom eller pensionär? , " +
                 "Menyval 2 - (Bio) Sällskap , Menyval 3 - Upprepa tio gånger, Menyval 4 - Det tredje ordet.");
 
+                // Läs användarens inmatning
                 input = Console.ReadLine()!;
 
+
+                // Hantera användarens menyval
                 switch (input)
                 {
                     case "0":
+
+                        // Avsluta programmet
                         Console.WriteLine("Programmet stängs ner...");
                         run = false;
                         break;
 
 
                     case "1":
+
+                        // Hantera val för att kolla ålder
                         Console.WriteLine("Ungdom eller pensionär? Din ålder: ");
 
 
@@ -53,6 +65,8 @@ namespace Lexicon_övning2
 
 
                     case "2":
+
+                        // Hantera val för att kolla gruppens ålder och totalkostnad
                         Console.WriteLine("Hur många är ni?");
 
                         input = Console.ReadLine()!;
@@ -76,7 +90,7 @@ namespace Lexicon_övning2
                             }
                         }
 
-
+                        // Beräkna totalkostnad för gruppen
                         foreach (int personAge in groupAges)
                         {
 
@@ -85,13 +99,14 @@ namespace Lexicon_övning2
                         }
 
                         Console.WriteLine($"Antal personer: {result}.    Totalkostnad för hela sällskapet: {totalGroupPrice} kr.");
-                        totalGroupPrice = 0;
-                        groupAges.Clear();
+                        totalGroupPrice = 0; // Nollställ totalkostnaden
+                        groupAges.Clear();   // Töm listan med åldrar
 
                         break;
 
                     case "3":
 
+                        // Upprepa användarens text tio gånger
                         Console.WriteLine("Ange din text:  ");
                         input = Console.ReadLine()!;
 
@@ -107,13 +122,14 @@ namespace Lexicon_övning2
                         break;
                     case "4":
 
+                        // Hämta det tredje ordet i en mening
                         Console.WriteLine("Ange en menimg med minst tre ord: ");
                         input = Console.ReadLine()!;
 
                         words = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
 
-                        // Check if there are a minimum of three words.
+                        // Kontrollera om det finns minst tre ord
                         if (words.Length >= 3)
                         {
                             Console.WriteLine("Tredje ordet är: " + words[2].ToString());
@@ -127,16 +143,18 @@ namespace Lexicon_övning2
 
                 break;
                 default:
+                        // Hantera felaktig inmatning
                         Console.WriteLine("Felaktigt input, försök igen.");
 
                 break;
             }
 
-            } while (run);
+            } while (run); // Upprepa så länge run är true
 
 
         }
 
+        // Metod för att beräkna totalkostnad för en gruppen baserat på ålder.
         private static void calculateTotalCost(int age)
         {
             price = 0;
@@ -158,6 +176,7 @@ namespace Lexicon_övning2
             }
         }
 
+        // Metod för att försöka parsa en sträng till en int
         private static bool tryParse(string input, out int result)
         {
             try
@@ -174,6 +193,7 @@ namespace Lexicon_övning2
 
         }
 
+        // Metod för att kolla ålder och visa pris baserat på ålder
         private static void checkAge(int age)
         {
             
